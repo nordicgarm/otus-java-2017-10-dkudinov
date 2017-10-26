@@ -12,6 +12,7 @@
     <modules>
         <module>L011</module>
         <module>L021</module>
+        <module>javaagent</module>
     </modules>
 
     <properties>

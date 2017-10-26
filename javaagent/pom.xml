@@ -7,15 +7,31 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>L02.1</artifactId>
+    <artifactId>javaagent</artifactId>
     <packaging>jar</packaging>
 
-    <name>L02.1</name>
+    <name>javaagent</name>
     <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <manifest.path.file>src/main/resources/META-INF/MANIFEST.MF</manifest.path.file>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven.jar.plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <manifestFile>${manifest.path.file}</manifestFile>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <dependency>
@@ -23,11 +39,6 @@
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>ru.otus.dkudinov</groupId>
-            <artifactId>javaagent</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>

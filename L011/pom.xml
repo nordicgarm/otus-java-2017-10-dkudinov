@@ -16,7 +16,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClassName>ru.otus.dkudinov.App</mainClassName>
+        <mainClassName>ru.otus.dkudinov.stand.App</mainClassName>
         <!-- plugin versions -->
         <maven.jar.plugin.version>3.0.2</maven.jar.plugin.version>
         <maven.assembly.plugin.version>3.0.0</maven.assembly.plugin.version>
