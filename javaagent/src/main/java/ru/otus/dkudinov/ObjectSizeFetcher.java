@@ -6,6 +6,8 @@ public class ObjectSizeFetcher {
     private static Instrumentation instrumentation;
 
     public static void premain(String args, Instrumentation inst) {
+        System.out.println("Starting agent...");
+
         instrumentation = inst;
     }
 

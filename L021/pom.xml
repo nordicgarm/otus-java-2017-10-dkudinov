@@ -14,7 +14,7 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.openjdk.jol.core.version>0.9</org.openjdk.jol.core.version>
     </properties>
 
     <dependencies>
@@ -28,6 +28,11 @@
             <groupId>ru.otus.dkudinov</groupId>
             <artifactId>javaagent</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>${org.openjdk.jol.core.version}</version>
         </dependency>
     </dependencies>
 </project>
