@@ -13,6 +13,7 @@
         <module>L011</module>
         <module>L021</module>
         <module>javaagent</module>
+        <module>L031</module>
     </modules>
 
     <properties>

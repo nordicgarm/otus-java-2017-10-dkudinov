@@ -11,6 +11,9 @@ package ru.otus.dkudinov.stand;
 import ru.otus.dkudinov.ObjectSizeFetcher;
 import org.openjdk.jol.info.GraphLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class App
 {
     private static final int MB = 1024 * 1024;
@@ -59,28 +62,55 @@ public class App
     }
 
     void startObjectSize() {
+        Integer integer = new Integer(1);
+        printObjectSize(integer);
+
         String s = new String("");
         printObjectSize(s);
 
-        s = "12345";
+        s = "1";
         printObjectSize(s);
-
         s = null;
+
+        byte b1 = 1;
+        printObjectSize(b1);
+
+        byte[] b = new byte[8 * MB];
+        printObjectSize(b);
+        b = null;
 
         A theA = new A();
         printObjectSize(theA);
-        printMemoryUsage();
+        theA = null;
 
         B theB  = new B();
         printObjectSize(theB);
-        printMemoryUsage();
+        theB = null;
+
+        C theC = new C();
+        printObjectSize(theC);
+        theC = null;
+
+        List<A> listOfA = new ArrayList<>();
+        printObjectSize(listOfA);
+
+        for (int i = 0; i < 10; i++) {
+            listOfA.add(new A());
+        }
+        printObjectSize(listOfA);
+
+        for (int i = 0; i < 90; i++) {
+            listOfA.add(new A());
+        }
+        printObjectSize(listOfA);
     }
 
     static void printObjectSize(Object o) {
-        System.out.format("Object size %7s: Plane = %,7d,  Total = %,7d\n",
+        System.out.format("Object size %9s: Plane = %,4d,  Total = %,13d,  Value = %s\n",
                 o.getClass().getSimpleName(),
                 ObjectSizeFetcher.getObjectSize(o),
-                GraphLayout.parseInstance(o).totalSize());
+                GraphLayout.parseInstance(o).totalSize(),
+                o.toString());
     }
 
     class A {
@@ -90,6 +120,10 @@ public class App
     }
 
     class B {
-        byte[] b = new byte[128 * MB];
+        byte[] b = new byte[8 * MB];
+    }
+
+    class C {
+
     }
 }
