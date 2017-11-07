@@ -1,19 +1,29 @@
 package ru.otus.dkudinov;
 
+import com.sun.istack.internal.NotNull;
+import com.sun.istack.internal.Nullable;
+
 import java.util.AbstractList;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
+
+/**
+ * Class MyArrayList implements only those methods which is using in methods
+ * {@link Collections#addAll},
+ * {@link Collections#copy},
+ * {@link Collections#sort}
+ */
 
 public class MyArrayList<E> extends AbstractList<E> {
     private int size;
-    private Object[] data;
+    private E[] data;
 
     private static final int DEFAULT_CAPACITY = 10;
     private static final int MAX_SIZE = Integer.MAX_VALUE - 10;
 
+    @SuppressWarnings("unchecked")
     public MyArrayList(int capacity) {
-        data = new Object[capacity];
+        data = (E[]) new Object[capacity];
     }
 
     public MyArrayList() {
@@ -22,7 +32,7 @@ public class MyArrayList<E> extends AbstractList<E> {
 
     @Override
     public E get(int index) {
-        return (E) data[index];
+        return data[index];
     }
 
     @Override
@@ -42,6 +52,20 @@ public class MyArrayList<E> extends AbstractList<E> {
         return true;
     }
 
+	@Override
+	public E set(int index, E element)
+	{
+		E prev = data[index];
+		data[index] = element;
+		return prev;
+	}
+
+	@Override
+	public ListIterator<E> listIterator()
+	{
+		return new ListItr();
+	}
+	
     private void ensureCapacity(int minCapacity) {
         if (minCapacity < data.length) {
             return;
@@ -61,6 +85,73 @@ public class MyArrayList<E> extends AbstractList<E> {
 
         data = Arrays.copyOf(data, newCapacity);
     }
+	
+	private class ListItr implements ListIterator<E>
+	{
+		int cursor = 0;
+		int lastReturned = -1;
 
+		@Override
+		public boolean hasNext()
+		{
+			return cursor != size;
+		}
 
+		@Override
+		public E next()
+		{
+			if (cursor == size) {
+				throw new NoSuchElementException();
+			}
+			
+			lastReturned = cursor;
+			return data[cursor++];
+		}
+		
+		@Override
+		public void set(E e)
+		{
+			if (lastReturned == -1) {
+				throw new IllegalStateException();
+			}
+
+			MyArrayList.this.set(lastReturned, e);
+		}
+
+		@Override
+		public boolean hasPrevious()
+		{
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public E previous()
+		{
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public int nextIndex()
+		{
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public int previousIndex()
+		{
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public void remove()
+		{
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public void add(E p1)
+		{
+			throw new UnsupportedOperationException();
+		}
+	}
 }
