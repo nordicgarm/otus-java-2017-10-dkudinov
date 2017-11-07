@@ -19,26 +19,19 @@ public class App
     {
         MyArrayList<Integer> list = new MyArrayList<>();
 
-		// addAll
+        // addAll
         Collections.addAll(list, 1, 2, -1, 0);
         System.out.println(Arrays.toString(list.toArray()));
-		
-		// copy
-		MyArrayList<Integer> list2 = new MyArrayList<>();
-		Collections.addAll(list2, 1, 1, 1, 1);
-		Collections.copy(list2, list);
 
-		System.out.println(Arrays.toString(list2.toArray()));
-		
-		// sort
-		Collections.sort(list, new Comparator<Integer>() {
-				@Override
-				public int compare(Integer i1, Integer i2)
-				{
-					return i1 - i2;
-				}
-			}
-		);
-		System.out.println(Arrays.toString(list.toArray()));
+        // copy
+        MyArrayList<Integer> list2 = new MyArrayList<>();
+        Collections.addAll(list2, 1, 1, 1, 1);
+        Collections.copy(list2, list);
+
+        System.out.println(Arrays.toString(list2.toArray()));
+
+        // sort
+        Collections.sort(list, (i1, i2) -> i1 - i2);
+        System.out.println(Arrays.toString(list.toArray()));
     }
 }
