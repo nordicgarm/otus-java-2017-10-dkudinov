@@ -14,6 +14,7 @@
         <module>L021</module>
         <module>javaagent</module>
         <module>L031</module>
+        <module>L041</module>
     </modules>
 
     <properties>
